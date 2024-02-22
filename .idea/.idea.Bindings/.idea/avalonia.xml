@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="Bindings/Views/MainWindow.axaml" value="Bindings/Bindings.csproj" />
+        <entry key="Bindings/Views/Window1.axaml" value="Bindings/Bindings.csproj" />
       </map>
     </option>
   </component>

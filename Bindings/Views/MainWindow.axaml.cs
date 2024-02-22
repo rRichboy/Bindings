@@ -22,11 +22,22 @@ namespace Bindings.Views
                 Count = ct.Text
             };
 
-            (DataContext as MainWindowViewModel)?.Products.Add(newProduct);
+            (DataContext as MainWindowViewModel)?.Products.Add( newProduct);
 
             nm.Text = string.Empty;
             pr.Text = string.Empty;
             ct.Text = string.Empty;
+        }
+        
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Prod.SelectedItem != null)
+            {
+                Product selectedProduct = (Product)Prod.SelectedItem;
+
+                Window1 window1 = new Window1(selectedProduct);
+                window1.Show();    
+            }
         }
     }
 }

@@ -34,11 +34,9 @@ C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Microsoft.CodeAn
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Microsoft.CodeAnalysis.CSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\ReactiveUI.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\SkiaSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Splat.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\System.Drawing.Common.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\System.IO.Pipelines.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\System.Reactive.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\Tmds.DBus.Protocol.dll
@@ -106,7 +104,6 @@ C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\osx\nat
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-arm64\native\libHarfBuzzSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-x64\native\libHarfBuzzSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-x86\native\libHarfBuzzSharp.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\linux-arm\native\libSkiaSharp.so
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\linux-arm64\native\libSkiaSharp.so
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\linux-musl-x64\native\libSkiaSharp.so
@@ -115,8 +112,6 @@ C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\osx\nat
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-arm64\native\libSkiaSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-x64\native\libSkiaSharp.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win-x86\native\libSkiaSharp.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Bindings.csproj.AssemblyReference.cache
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Avalonia\resources

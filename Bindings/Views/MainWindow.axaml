@@ -23,7 +23,7 @@
     
         <Button Width="120" HorizontalContentAlignment="Center" Content="Добавить" Click="AddButton_Click" Margin="5" Background="Green"/>
     
-        <ListBox ItemsSource="{Binding Products}">
+        <ListBox Name="Prod" ItemsSource="{Binding Products}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -33,7 +33,12 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Click="OpenButton_Click" Header="Открыть в новом окне">
+                    </MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </StackPanel>
-
 </Window>
