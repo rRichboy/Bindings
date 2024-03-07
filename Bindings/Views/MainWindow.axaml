@@ -14,16 +14,17 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
+    <Grid>
     <StackPanel HorizontalAlignment="Center" Spacing="10">
         <TextBlock Text="Продукты:"/>
         <TextBox Watermark="Название:" Name="nm"/>
         <TextBox Watermark="Цена:" Name="pr"/>
         <TextBox Watermark="Количество:" Name="ct"/>
     
-        <Button Width="120" HorizontalContentAlignment="Center" Content="Добавить" Click="AddButton_Click" Margin="5" Background="Green"/>
+        <Button Width="120" HorizontalContentAlignment="Center" Content="Выбрать" Click="AddButton_Click" Margin="5" Background="Green"/>
     
-        <ListBox Name="Prod" ItemsSource="{Binding Products}">
+        <ListBox Name="Prod" ItemsSource="{Binding Products}" 
+                 SelectionMode="Multiple" SelectedItems="{Binding Cart}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -33,12 +34,9 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-            <ListBox.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Click="OpenButton_Click" Header="Открыть в новом окне">
-                    </MenuItem>
-                </ContextMenu>
-            </ListBox.ContextMenu>
         </ListBox>
+        <Button Width="160" HorizontalContentAlignment="Center" Content="Добавить в корзину" Click="OpenButton_Click" Margin="5" Background="Blue"/>
+        <TextBlock Name="Error" Foreground="Red"/>
     </StackPanel>
+    </Grid>
 </Window>

@@ -3,6 +3,6 @@ namespace Bindings.Models;
 public class Product
 {
     public string Name { get; set; }
-    public string Price { get; set; }
-    public string Count { get; set; }
+    public int Price { get; set; }
+    public int Count { get; set; }
 }

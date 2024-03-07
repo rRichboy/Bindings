@@ -1,13 +1,24 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="using:Bindings.ViewModels"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:DataType="vm:MainWindowViewModel"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Bindings.Views.Window1"
         Title="Window1">
         <StackPanel HorizontalAlignment="Center">
-                <TextBox Name="nameP"/>
-                <TextBox Name="priceP"/>
-                <TextBox Name="countP"/>
+                <ListBox Name="Prod" ItemsSource="{Binding Cart}">
+                        <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                        <StackPanel>
+                                                <TextBlock Text="{Binding Name}"/>
+                                                <TextBlock Text="{Binding Price}"/>
+                                                <TextBlock Text="{Binding Count}"/>
+                                        </StackPanel>
+                                </DataTemplate>
+                        </ListBox.ItemTemplate>
+                </ListBox>
+                <TextBlock Text="{Binding TotalPrice}" FontWeight="Bold"/>
         </StackPanel>
 </Window>
