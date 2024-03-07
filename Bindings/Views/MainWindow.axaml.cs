@@ -46,7 +46,6 @@ namespace Bindings.Views
         {
             return int.TryParse(input, out _);
         }
-
         
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {

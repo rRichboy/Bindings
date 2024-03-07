@@ -19,6 +19,6 @@
                                 </DataTemplate>
                         </ListBox.ItemTemplate>
                 </ListBox>
-                <TextBlock Text="{Binding TotalPrice}" FontWeight="Bold"/>
+                <TextBlock Name="summa" />
         </StackPanel>
 </Window>
