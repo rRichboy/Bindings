@@ -18,6 +18,9 @@ build_property.ProjectDir = C:\Users\glkho\RiderProjects\Bindings\Bindings\
 [C:/Users/glkho/RiderProjects/Bindings/Bindings/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/glkho/RiderProjects/Bindings/Bindings/Views/EditProducts.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/glkho/RiderProjects/Bindings/Bindings/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

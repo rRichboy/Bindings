@@ -20,5 +20,6 @@
                         </ListBox.ItemTemplate>
                 </ListBox>
                 <TextBlock Name="summa" />
+                <Button Name="BackButton" Content="Вернуться к покупкам" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         </StackPanel>
 </Window>

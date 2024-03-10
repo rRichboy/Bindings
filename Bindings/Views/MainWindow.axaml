@@ -14,29 +14,58 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-    <Grid>
-    <StackPanel HorizontalAlignment="Center" Spacing="10">
+    
+    <Grid HorizontalAlignment="Center">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+    </Grid.ColumnDefinitions>
+
+    <StackPanel Grid.Column="0" Spacing="10">
         <TextBlock Text="Продукты:"/>
         <TextBox Watermark="Название:" Name="nm"/>
         <TextBox Watermark="Цена:" Name="pr"/>
         <TextBox Watermark="Количество:" Name="ct"/>
-    
         <Button Width="120" HorizontalContentAlignment="Center" Content="Выбрать" Click="AddButton_Click" Margin="5" Background="Green"/>
-    
-        <ListBox Name="Prod" ItemsSource="{Binding Products}" 
-                 SelectionMode="Multiple" SelectedItems="{Binding Cart}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="{Binding Price}"/>
-                        <TextBlock Text="{Binding Count}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Button Width="160" HorizontalContentAlignment="Center" Content="Добавить в корзину" Click="OpenButton_Click" Margin="5" Background="Blue"/>
+    </StackPanel>
+
+    <ListBox Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}" 
+             SelectionMode="Multiple" SelectedItems="{Binding Cart}"
+             MinWidth="100" Background="Transparent">
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <TextBlock Text="{Binding Name}"/>
+                    <TextBlock Text="{Binding Price}"/>
+                    <TextBlock Text="{Binding Count}"/>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+
+    <StackPanel Grid.Column="2" Spacing="10">
+        <StackPanel>
+            <TextBlock Text="Выбранные продукты:"/>
+            <ListBox Background="Transparent" Name="SelectedItems" ItemsSource="{Binding Cart}" MinWidth="300">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Price}"/>
+                            <TextBlock Text="{Binding Count}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+        <StackPanel>
+            <Button Width="160" HorizontalContentAlignment="Center" Content="Добавить в корзину" Click="OpenButton_Click" Margin="5" Background="Blue"/>
+            <Button Width="160" HorizontalContentAlignment="Center" Content="Изменить" Click="EditButton_OnClick" Margin="5" Background="Blue"/>
+        </StackPanel>
+        
         <TextBlock Name="Error" Foreground="Red"/>
     </StackPanel>
-    </Grid>
+</Grid>
 </Window>
