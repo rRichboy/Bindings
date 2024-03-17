@@ -3,11 +3,12 @@
         xmlns:vm="using:Bindings.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" 
         x:Class="Bindings.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Bindings">
+        Title="Bindings"
+        Width="600" Height="400">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,57 +16,64 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <Grid HorizontalAlignment="Center">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="Auto"/>
-    </Grid.ColumnDefinitions>
-
-    <StackPanel Grid.Column="0" Spacing="10">
-        <TextBlock Text="Продукты:"/>
-        <TextBox Watermark="Название:" Name="nm"/>
-        <TextBox Watermark="Цена:" Name="pr"/>
-        <TextBox Watermark="Количество:" Name="ct"/>
-        <Button Width="120" HorizontalContentAlignment="Center" Content="Выбрать" Click="AddButton_Click" Margin="5" Background="Green"/>
-    </StackPanel>
-
-    <ListBox Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}" 
-             SelectionMode="Multiple" SelectedItems="{Binding Cart}"
-             MinWidth="100" Background="Transparent">
-        <ListBox.ItemTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <TextBlock Text="{Binding Name}"/>
-                    <TextBlock Text="{Binding Price}"/>
-                    <TextBlock Text="{Binding Count}"/>
-                </StackPanel>
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
-
-    <StackPanel Grid.Column="2" Spacing="10">
-        <StackPanel>
-            <TextBlock Text="Выбранные продукты:"/>
-            <ListBox Background="Transparent" Name="SelectedItems" ItemsSource="{Binding Cart}" MinWidth="300">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}"/>
-                            <TextBlock Text="{Binding Price}"/>
-                            <TextBlock Text="{Binding Count}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </StackPanel>
+    <Window.Styles>
         
-        <StackPanel>
-            <Button Width="160" HorizontalContentAlignment="Center" Content="Добавить в корзину" Click="OpenButton_Click" Margin="5" Background="Blue"/>
-            <Button Width="160" HorizontalContentAlignment="Center" Content="Изменить" Click="EditButton_OnClick" Margin="5" Background="Blue"/>
-        </StackPanel>
+        <Style Selector="ListBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
         
-        <TextBlock Name="Error" Foreground="Red"/>
-    </StackPanel>
-</Grid>
+        <Style Selector="Button">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            
+        </Style>
+        
+    </Window.Styles>
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="5">
+            <TextBlock Text="Продукты:"/>
+            <TextBox Watermark="Название:" Name="nm"/>
+            <TextBox Watermark="Цена:" Name="pr"/>
+            <TextBox Watermark="Количество:" Name="ct"/>
+            <Button Width="120" HorizontalAlignment="Center" Content="Выбрать" Click="AddButton_Click" Background="Green"/>
+        </StackPanel>
+
+        <ListBox Grid.Row="0" Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}" 
+                 SelectionMode="Multiple" SelectedItems="{Binding Cart}" Background="Transparent">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding Price}"/>
+                        <TextBlock Text="{Binding Count}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        
+        <StackPanel Grid.Row="0" Grid.Column="2" Spacing="5">
+            <StackPanel>
+                <Button Width="160" HorizontalAlignment="Center"  Content="Добавить в корзину" Click="OpenButton_Click" Background="Blue"/>
+                <Button Width="160" HorizontalAlignment="Center" Content="Изменить" Click="EditButton_OnClick" Background="Blue"/>
+                <Button Width="160" HorizontalAlignment="Center" Content="Удалить" Click="DeleteButton_OnClick" Background="Blue"/>
+            </StackPanel>
+            
+            <TextBlock Name="Error" Foreground="Red"/>
+        </StackPanel>
+    </Grid>
 </Window>

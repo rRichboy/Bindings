@@ -1,3 +1,4 @@
+using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Bindings.Models;
@@ -69,20 +70,31 @@ namespace Bindings.Views
                 Error.Text = "Выберите продукты перед открытием корзины.";
             }
         }
-
-        private void EditButton_OnClick(object? sender, RoutedEventArgs e)
+        
+        private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var mainWindow = this;
+            var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
             
-            Product selectedProduct = new Product();
 
-            EditProducts editProducts = new EditProducts((MainWindowViewModel)DataContext, mainWindow, selectedProduct);
+            var viewModel = DataContext as MainWindowViewModel;
+            if (viewModel != null)
+            {
+                foreach (var selectedItem in selectedItems)
+                {
+                    viewModel.Products.Remove(selectedItem);
+                }
+            }
+        }
+        
+        private void EditButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Product selectedProduct = (Product)Prod.SelectedItem;
 
-            editProducts.Closed += (s, args) => { mainWindow.Show(); };
-
-            mainWindow.Hide();
-            
-            editProducts.Show();
+            if (selectedProduct != null)
+            {
+                var dialog = new EditProducts((MainWindowViewModel)DataContext, this, selectedProduct);
+                dialog.ShowDialog(this);
+            }
         }
     }
 }

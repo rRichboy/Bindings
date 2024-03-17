@@ -1,5 +1,3 @@
-// EditProducts.axaml.cs
-
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using System;
@@ -11,40 +9,42 @@ namespace Bindings.Views
 {
     public partial class EditProducts : Window
     {
-        private TextBox _nameTextBox;
-        private TextBox _priceTextBox;
-        private TextBox _countTextBox;
+        private TextBox nameTextBox;
+        private TextBox priceTextBox;
+        private TextBox countTextBox;
         private MainWindow _mainWindow;
         private Product _selectedProduct;
 
-        public EditProducts(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, Product selectedProduct)
+        public EditProducts(MainWindowViewModel viewModel, MainWindow mainWindow, Product selectedProduct)
         {
             InitializeComponent();
-
-            _nameTextBox = this.FindControl<TextBox>("nm");
-            _priceTextBox = this.FindControl<TextBox>("pr");
-            _countTextBox = this.FindControl<TextBox>("ct");
-
-            DataContext = mainWindowViewModel;
-
+            
+            nameTextBox = nm;
+            priceTextBox = pr;
+            countTextBox = ct;
             _mainWindow = mainWindow;
             _selectedProduct = selectedProduct;
-
+            DataContext = viewModel;
+            
             Closed += OnClosed;
         }
 
         private void OnClosed(object? sender, EventArgs e)
         {
+            _mainWindow.DataContext = null;
+            _mainWindow.DataContext = DataContext;
             _mainWindow.Show();
         }
 
         private void EditProduct_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            _selectedProduct.Name = _nameTextBox.Text;
-            _selectedProduct.Price = int.Parse(_priceTextBox.Text);
-            _selectedProduct.Count = int.Parse(_countTextBox.Text);
-            
-            Close();
+            if (_selectedProduct != null)
+            {
+                _selectedProduct.Name = nameTextBox.Text;
+                _selectedProduct.Price = int.Parse(priceTextBox.Text);
+                _selectedProduct.Count = int.Parse(countTextBox.Text);
+                Close();
+            }
         }
     }
 }

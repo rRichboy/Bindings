@@ -1,6 +1,7 @@
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Bindings.Models;
 using Bindings.ViewModels;
 
 namespace Bindings.Views
@@ -14,37 +15,50 @@ namespace Bindings.Views
             InitializeComponent();
 
             DataContext = dataContext;
+            _summa = summa;
 
-            _summa = this.FindControl<TextBlock>("summa");
+            Update();
 
-            UpdateTotalPrice();
+            ProductsChanges();
 
-            SubscribeToProductsChanges();
-
-            var backButton = this.FindControl<Button>("BackButton");
+            var backButton = BackButton;
 
             backButton.Click += OnBackButtonClick;
         }
 
-        private void SubscribeToProductsChanges()
+        private void ProductsChanges()
         {
             var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
             {
-                viewModel.Products.CollectionChanged += (sender, args) => { UpdateTotalPrice(); };
+                viewModel.Products.CollectionChanged += (sender, args) => { Update(); };
             }
         }
 
-        private void UpdateTotalPrice()
+        private void Update()
         {
             var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
             {
                 var totalPrice = viewModel.Products.Sum(product => product.Price * product.Count);
-                _summa.Text = $"Total Price: {totalPrice}";
+                _summa.Text = $"Общая сумма: {totalPrice}";
             }
         }
-
+        
+        private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
+            
+            var viewModel = DataContext as MainWindowViewModel;
+            if (viewModel != null)
+            {
+                foreach (var selectedItem in selectedItems)
+                {
+                    viewModel.Products.Remove(selectedItem);
+                }
+            }
+        }
+        
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
