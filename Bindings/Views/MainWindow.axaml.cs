@@ -13,42 +13,7 @@ namespace Bindings.Views
             InitializeComponent();
             DataContext = new MainWindowViewModel();
         }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(nm.Text) || string.IsNullOrWhiteSpace(pr.Text) ||
-                string.IsNullOrWhiteSpace(ct.Text))
-            {
-                Error.Text = "Заполните все поля";
-                return;
-            }
-
-            if (!IsNumeric(pr.Text) || !IsNumeric(ct.Text))
-            {
-                Error.Text = "В поля Price и Count введите цифры";
-                return;
-            }
-
-            var newProduct = new Product
-            {
-                Name = nm.Text,
-                Price = int.Parse(pr.Text),
-                Count = int.Parse(ct.Text)
-            };
-
-            (DataContext as MainWindowViewModel)?.Products.Add(newProduct);
-
-            nm.Text = string.Empty;
-            pr.Text = string.Empty;
-            ct.Text = string.Empty;
-            Error.Text = string.Empty;
-        }
-
-        private bool IsNumeric(string input)
-        {
-            return int.TryParse(input, out _);
-        }
-
+        
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
@@ -93,8 +58,16 @@ namespace Bindings.Views
             if (selectedProduct != null)
             {
                 var dialog = new EditProducts((MainWindowViewModel)DataContext, this, selectedProduct);
+                dialog.SetProductFields(selectedProduct);
                 dialog.ShowDialog(this);
             }
         }
+
+        private void Button_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new AddProducts((MainWindowViewModel)DataContext);
+            dialog.ShowDialog(this);
+        }
+
     }
 }

@@ -40,24 +40,31 @@ namespace Bindings.Views
             var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
             {
-                var totalPrice = viewModel.Products.Sum(product => product.Price * product.Count);
-                _summa.Text = $"Общая сумма: {totalPrice}";
+                var totalPrice = viewModel.Cart.Sum(product => product.Price * product.Count);
+                summa.Text = $"Total Price: {totalPrice}";
             }
         }
         
-        private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
-        {
+       private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+       {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
-            
             var viewModel = DataContext as MainWindowViewModel;
-            if (viewModel != null)
-            {
-                foreach (var selectedItem in selectedItems)
-                {
-                    viewModel.Products.Remove(selectedItem);
-                }
-            }
+
+    if (viewModel != null)
+    {
+        foreach (var selectedItem in selectedItems)
+        {
+            viewModel.Cart.Remove(selectedItem);
         }
+        
+        Update();
+    }
+}
+
+
+
+
+
         
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {

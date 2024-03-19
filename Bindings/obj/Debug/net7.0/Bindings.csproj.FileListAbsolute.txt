@@ -129,4 +129,3 @@ C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Bindings.pdb
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Bindings.csproj.CopyComplete
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Bindings.genruntimeconfig.cache
 C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\ref\Bindings.dll
-C:\Users\glkho\RiderProjects\Bindings\Bindings\obj\Debug\net7.0\Bindings.sourcelink.json

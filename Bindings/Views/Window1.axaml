@@ -6,10 +6,10 @@
         x:DataType="vm:MainWindowViewModel"
         mc:Ignorable="d"
         x:Class="Bindings.Views.Window1"
-        Title="Window1"
+        Title="Корзина"
         Width="600" Height="400">
         <StackPanel HorizontalAlignment="Center">
-                <ListBox Name="Prod" ItemsSource="{Binding Cart}">
+                <ListBox Name="Prod" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
                         <ListBox.ItemTemplate>
                                 <DataTemplate>
                                         <StackPanel>

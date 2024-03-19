@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         x:Class="Bindings.Views.EditProducts"
-        Title="EditProducts"
+        Title="Редактирование продуктов"
         Width="400" Height="200">
     
         <StackPanel HorizontalAlignment="Center" Spacing="10">

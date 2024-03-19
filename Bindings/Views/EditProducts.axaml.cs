@@ -43,8 +43,16 @@ namespace Bindings.Views
                 _selectedProduct.Name = nameTextBox.Text;
                 _selectedProduct.Price = int.Parse(priceTextBox.Text);
                 _selectedProduct.Count = int.Parse(countTextBox.Text);
+                
                 Close();
             }
+        }
+        
+        public void SetProductFields(Product selectedProduct)
+        {
+            nameTextBox.Text = selectedProduct.Name;
+            priceTextBox.Text = selectedProduct.Price.ToString();
+            countTextBox.Text = selectedProduct.Count.ToString();
         }
     }
 }

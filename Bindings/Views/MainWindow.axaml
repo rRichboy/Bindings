@@ -28,7 +28,6 @@
         
         <Style Selector="Button">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            
         </Style>
         
     </Window.Styles>
@@ -43,15 +42,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="5">
-            <TextBlock Text="Продукты:"/>
-            <TextBox Watermark="Название:" Name="nm"/>
-            <TextBox Watermark="Цена:" Name="pr"/>
-            <TextBox Watermark="Количество:" Name="ct"/>
-            <Button Width="120" HorizontalAlignment="Center" Content="Выбрать" Click="AddButton_Click" Background="Green"/>
-        </StackPanel>
-
+        
         <ListBox Grid.Row="0" Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}" 
                  SelectionMode="Multiple" SelectedItems="{Binding Cart}" Background="Transparent">
             <ListBox.ItemTemplate>
@@ -65,15 +56,14 @@
             </ListBox.ItemTemplate>
         </ListBox>
         
-        
         <StackPanel Grid.Row="0" Grid.Column="2" Spacing="5">
             <StackPanel>
+                <Button Width="160" HorizontalAlignment="Center" Content="Создать товар" Click="Button_OnClick" Background="Blue"/>
                 <Button Width="160" HorizontalAlignment="Center"  Content="Добавить в корзину" Click="OpenButton_Click" Background="Blue"/>
                 <Button Width="160" HorizontalAlignment="Center" Content="Изменить" Click="EditButton_OnClick" Background="Blue"/>
                 <Button Width="160" HorizontalAlignment="Center" Content="Удалить" Click="DeleteButton_OnClick" Background="Blue"/>
             </StackPanel>
-            
             <TextBlock Name="Error" Foreground="Red"/>
-        </StackPanel>
+            </StackPanel>
     </Grid>
 </Window>
