@@ -3,7 +3,7 @@
         xmlns:vm="using:Bindings.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" 
+        mc:Ignorable="d"
         x:Class="Bindings.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -13,57 +13,61 @@
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
-    
+
     <Window.Styles>
-        
+
         <Style Selector="ListBox">
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="Gray" />
+            <Setter Property="Padding" Value="5" />
         </Style>
-        
+
         <Style Selector="Button">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
-        
+
     </Window.Styles>
-    
+
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        
-        <ListBox Grid.Row="0" Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}" 
+
+        <ListBox Grid.Row="0" Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}"
                  SelectionMode="Multiple" SelectedItems="{Binding Cart}" Background="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="{Binding Price}"/>
-                        <TextBlock Text="{Binding Count}"/>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Price}" />
+                        <TextBlock Text="{Binding Count}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
         <StackPanel Grid.Row="0" Grid.Column="2" Spacing="5">
             <StackPanel>
-                <Button Width="160" HorizontalAlignment="Center" Content="Создать товар" Click="Button_OnClick" Background="Blue"/>
-                <Button Width="160" HorizontalAlignment="Center"  Content="Добавить в корзину" Click="OpenButton_Click" Background="Blue"/>
-                <Button Width="160" HorizontalAlignment="Center" Content="Изменить" Click="EditButton_OnClick" Background="Blue"/>
-                <Button Width="160" HorizontalAlignment="Center" Content="Удалить" Click="DeleteButton_OnClick" Background="Blue"/>
+                <Button Width="160" HorizontalAlignment="Center" Content="Создать товар" Click="Button_OnClick"
+                        Background="Blue" />
+                <Button Width="160" HorizontalAlignment="Center" Content="Добавить в корзину" Click="OpenButton_Click"
+                        Background="Blue" />
+                <Button Width="160" HorizontalAlignment="Center" Content="Изменить" Click="EditButton_OnClick"
+                        Background="Blue" />
+                <Button Width="160" HorizontalAlignment="Center" Content="Удалить" Click="DeleteButton_OnClick"
+                        Background="Blue" />
             </StackPanel>
-            <TextBlock Name="Error" Foreground="Red"/>
-            </StackPanel>
+        </StackPanel>
+        <TextBlock Name="Error" Foreground="Red" />
     </Grid>
 </Window>

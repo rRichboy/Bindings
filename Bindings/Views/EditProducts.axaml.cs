@@ -18,14 +18,14 @@ namespace Bindings.Views
         public EditProducts(MainWindowViewModel viewModel, MainWindow mainWindow, Product selectedProduct)
         {
             InitializeComponent();
-            
+
             nameTextBox = nm;
             priceTextBox = pr;
             countTextBox = ct;
             _mainWindow = mainWindow;
             _selectedProduct = selectedProduct;
             DataContext = viewModel;
-            
+
             Closed += OnClosed;
         }
 
@@ -43,11 +43,11 @@ namespace Bindings.Views
                 _selectedProduct.Name = nameTextBox.Text;
                 _selectedProduct.Price = int.Parse(priceTextBox.Text);
                 _selectedProduct.Count = int.Parse(countTextBox.Text);
-                
+
                 Close();
             }
         }
-        
+
         public void SetProductFields(Product selectedProduct)
         {
             nameTextBox.Text = selectedProduct.Name;

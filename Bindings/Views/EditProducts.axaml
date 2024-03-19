@@ -6,11 +6,12 @@
         x:Class="Bindings.Views.EditProducts"
         Title="Редактирование продуктов"
         Width="400" Height="200">
-    
-        <StackPanel HorizontalAlignment="Center" Spacing="10">
-                <TextBox Watermark="Название:" Name="nm"/>
-                <TextBox Watermark="Цена:" Name="pr"/>
-                <TextBox Watermark="Количество:" Name="ct"/>
-                <Button Width="120" HorizontalContentAlignment="Center" Content="Изменить" Click="EditProduct_Click" Margin="5" Background="Green"/>
-        </StackPanel>        
+
+    <StackPanel HorizontalAlignment="Center" Spacing="10">
+        <TextBox Watermark="Название:" Name="nm" />
+        <TextBox Watermark="Цена:" Name="pr" />
+        <TextBox Watermark="Количество:" Name="ct" />
+        <Button Width="120" HorizontalContentAlignment="Center" Content="Изменить" Click="EditProduct_Click" Margin="5"
+                Background="Green" />
+    </StackPanel>
 </Window>

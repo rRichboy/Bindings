@@ -10,13 +10,13 @@ namespace Bindings.Views;
 public partial class AddProducts : Window
 {
     private MainWindowViewModel viewModel;
+
     public AddProducts(MainWindowViewModel viewModel)
     {
         InitializeComponent();
         this.viewModel = viewModel;
-        
     }
-    
+
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
         // Ваш код для создания нового продукта
@@ -37,5 +37,3 @@ public partial class AddProducts : Window
         this.Close();
     }
 }
-    
-    

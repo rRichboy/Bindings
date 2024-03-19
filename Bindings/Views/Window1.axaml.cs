@@ -1,5 +1,6 @@
 using System.Linq;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Bindings.Models;
 using Bindings.ViewModels;
@@ -44,27 +45,37 @@ namespace Bindings.Views
                 summa.Text = $"Total Price: {totalPrice}";
             }
         }
-        
-       private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
-       {
+
+        private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
             var viewModel = DataContext as MainWindowViewModel;
 
-    if (viewModel != null)
-    {
-        foreach (var selectedItem in selectedItems)
-        {
-            viewModel.Cart.Remove(selectedItem);
+            if (viewModel != null)
+            {
+                foreach (var selectedItem in selectedItems)
+                {
+                    viewModel.Cart.Remove(selectedItem);
+                }
+
+                Update();
+            }
         }
         
-        Update();
-    }
-}
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var textBox = (TextBox)sender;
+                var product = (Product)textBox.DataContext;
 
-
-
-
-
+                if (int.TryParse(textBox.Text, out int count))
+                {
+                    product.Count = count;
+                    Update();
+                }
+            }
+        }
         
         private void OnBackButtonClick(object sender, RoutedEventArgs e)
         {

@@ -13,7 +13,7 @@ namespace Bindings.Views
             InitializeComponent();
             DataContext = new MainWindowViewModel();
         }
-        
+
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
@@ -35,11 +35,11 @@ namespace Bindings.Views
                 Error.Text = "Выберите продукты перед открытием корзины.";
             }
         }
-        
+
         private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
-            
+
 
             var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
@@ -50,7 +50,7 @@ namespace Bindings.Views
                 }
             }
         }
-        
+
         private void EditButton_OnClick(object sender, RoutedEventArgs e)
         {
             Product selectedProduct = (Product)Prod.SelectedItem;
@@ -68,6 +68,5 @@ namespace Bindings.Views
             var dialog = new AddProducts((MainWindowViewModel)DataContext);
             dialog.ShowDialog(this);
         }
-
     }
 }

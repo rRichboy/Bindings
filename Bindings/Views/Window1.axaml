@@ -8,20 +8,20 @@
         x:Class="Bindings.Views.Window1"
         Title="Корзина"
         Width="600" Height="400">
-        <StackPanel HorizontalAlignment="Center">
-                <ListBox Name="Prod" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
-                        <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                        <StackPanel>
-                                                <TextBlock Text="{Binding Name}"/>
-                                                <TextBlock Text="{Binding Price}"/>
-                                                <TextBlock Text="{Binding Count}"/>
-                                        </StackPanel>
-                                </DataTemplate>
-                        </ListBox.ItemTemplate>
-                </ListBox>
-                <TextBlock Name="summa" />
-                <Button Content="Удалить" Click="DeleteButton_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Button Name="BackButton" Content="Вернуться к покупкам" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        </StackPanel>
+    <StackPanel HorizontalAlignment="Center">
+        <ListBox Name="Prod" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" />
+                        <TextBlock Text="{Binding Price}" />
+                        <TextBox Text="{Binding Count}" KeyUp="TextBox_KeyUp" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock Name="summa" />
+        <Button Content="Удалить" Click="DeleteButton_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Button Name="BackButton" Content="Вернуться к покупкам" HorizontalAlignment="Left" VerticalAlignment="Top" />
+    </StackPanel>
 </Window>
