@@ -44,7 +44,7 @@
         </Grid.ColumnDefinitions>
 
         <ListBox Grid.Row="0" Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}"
-                 SelectionMode="Multiple" SelectedItems="{Binding Cart}" Background="Transparent">
+                 SelectionMode="Multiple" SelectedItems="{Binding SelectedProducts}" Background="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -65,6 +65,8 @@
                 <Button Width="160" HorizontalAlignment="Center" Content="Изменить" Click="EditButton_OnClick"
                         Background="Blue" />
                 <Button Width="160" HorizontalAlignment="Center" Content="Удалить" Click="DeleteButton_OnClick"
+                        Background="Blue" />
+                <Button Width="160" HorizontalAlignment="Center" Content="Открыть корзину" Click="OpenCartButton_Click"
                         Background="Blue" />
             </StackPanel>
         </StackPanel>

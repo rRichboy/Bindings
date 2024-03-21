@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0EYmyqiRlz2WFN8r/mVOonCQbBLzXsXKqg8j5TKptmKppmZiZozzuS7f+qbcJQWHje549CmBUvU0gWrfKSQtvg==",
+  "dgSpecHash": "A3iqcmgAwU75lWe/f6lIEz66XNGOr+dUb+TECv4zkKhZVAcgotQo6lYv2DhVrP9hKbHOCn36L75oNoN27eRalg==",
   "success": true,
   "projectFilePath": "C:\\Users\\glkho\\RiderProjects\\Bindings\\Bindings\\Bindings.csproj",
   "expectedPackageFiles": [
@@ -76,7 +76,11 @@
     "C:\\Users\\glkho\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\glkho\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\glkho\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\glkho\\.nuget\\packages\\tmds.dbus.protocol\\0.15.0\\tmds.dbus.protocol.0.15.0.nupkg.sha512"
+    "C:\\Users\\glkho\\.nuget\\packages\\tmds.dbus.protocol\\0.15.0\\tmds.dbus.protocol.0.15.0.nupkg.sha512",
+    "C:\\Users\\glkho\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\glkho\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\glkho\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512",
+    "C:\\Users\\glkho\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.17\\microsoft.netcore.app.host.win-x64.7.0.17.nupkg.sha512"
   ],
   "logs": []
 }

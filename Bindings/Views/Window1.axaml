@@ -9,13 +9,19 @@
         Title="Корзина"
         Width="600" Height="400">
     <StackPanel HorizontalAlignment="Center">
-        <ListBox Name="Prod" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
+        <ListBox Name="Cart" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text="{Binding Price}" />
-                        <TextBox Text="{Binding Count}" KeyUp="TextBox_KeyUp" />
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Price}" />
+                            <TextBox HorizontalAlignment="Center" IsEnabled="False" Text="{Binding Count}" KeyUp="TextBox_KeyUp" />
+                            <Grid>
+                            <Button Foreground="Blue" Content="+" Click="IncreaseCountButton_Click" />
+                            <Button Foreground="Blue" Margin="27 0 0 0 " Content="-" Click="DecreaseCountButton_Click" />
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

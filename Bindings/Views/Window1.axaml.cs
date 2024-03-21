@@ -42,13 +42,13 @@ namespace Bindings.Views
             if (viewModel != null)
             {
                 var totalPrice = viewModel.Cart.Sum(product => product.Price * product.Count);
-                summa.Text = $"Total Price: {totalPrice}";
+                summa.Text = $"Общая сумма: {totalPrice}";
             }
         }
 
         private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
+            var selectedItems = Cart.SelectedItems.OfType<Product>().ToList();
             var viewModel = DataContext as MainWindowViewModel;
 
             if (viewModel != null)
@@ -57,7 +57,6 @@ namespace Bindings.Views
                 {
                     viewModel.Cart.Remove(selectedItem);
                 }
-
                 Update();
             }
         }
@@ -81,5 +80,25 @@ namespace Bindings.Views
         {
             Close();
         }
+        
+        private void IncreaseCountButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var product = (Product)button.DataContext;
+
+            product.Count++;
+        }
+
+        private void DecreaseCountButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            var product = (Product)button.DataContext;
+
+            if (product.Count > 1)
+            {
+                product.Count--;
+            }
+        }
+
     }
 }

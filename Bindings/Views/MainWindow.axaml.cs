@@ -18,9 +18,29 @@ namespace Bindings.Views
         {
             var viewModel = DataContext as MainWindowViewModel;
 
-            if (viewModel != null && viewModel.Products.Count > 0 && viewModel.Cart.Count > 0)
+            if (viewModel != null && viewModel.Products.Count > 0 && viewModel.SelectedProducts.Count > 0)
             {
                 var mainWindow = this;
+
+                foreach (var product in viewModel.SelectedProducts)
+                {
+                    if (!viewModel.Cart.Any(p => p.Name == product.Name))
+                    {
+                        var cartProduct = new Product
+                        {
+                            Name = product.Name,
+                            Price = product.Price,
+                            Count = 1
+                        };
+                
+                        viewModel.Cart.Add(cartProduct);
+                    }
+                    else
+                    {
+                        Error.Text = $"Продукт '{product.Name}' уже присутствует в корзине.";
+                        return;
+                    }
+                }
 
                 Window1 window1 = new Window1(DataContext);
 
@@ -35,18 +55,19 @@ namespace Bindings.Views
                 Error.Text = "Выберите продукты перед открытием корзины.";
             }
         }
-
+        
         private void DeleteButton_OnClick(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
-
-
+            
             var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
             {
                 foreach (var selectedItem in selectedItems)
                 {
                     viewModel.Products.Remove(selectedItem);
+                    if (viewModel.Cart.Contains(selectedItem))
+                        viewModel.Cart.Remove(selectedItem);
                 }
             }
         }
@@ -67,6 +88,28 @@ namespace Bindings.Views
         {
             var dialog = new AddProducts((MainWindowViewModel)DataContext);
             dialog.ShowDialog(this);
+        }
+        
+        private void OpenCartButton_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as MainWindowViewModel;
+
+            if (viewModel != null && viewModel.Cart.Count > 0)
+            {
+                var mainWindow = this;
+
+                Window1 window1 = new Window1(DataContext);
+
+                window1.Closed += (s, args) => { mainWindow.Show(); };
+
+                mainWindow.Hide();
+
+                window1.Show();
+            }
+            else
+            {
+                Error.Text = "Корзина пуста. Добавьте товары в корзину перед открытием.";
+            }
         }
     }
 }

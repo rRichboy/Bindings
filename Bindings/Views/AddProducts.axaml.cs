@@ -1,3 +1,4 @@
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -19,7 +20,6 @@ public partial class AddProducts : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        // Ваш код для создания нового продукта
         var newProduct = new Product
         {
             Name = nm.Text,
@@ -27,13 +27,17 @@ public partial class AddProducts : Window
             Count = int.Parse(ct.Text)
         };
 
-        // Добавление нового продукта в список Products через экземпляр MainWindowViewModel
-        viewModel.Products.Add(newProduct);
+        if (viewModel.Products.Any(p => p.Name == newProduct.Name))
+        {
+            Error.Text = $"Товар с именем '{newProduct.Name}' уже существует.";
+            return; 
+        }
 
-        // Очистка полей и закрытие окна
+        viewModel.Products.Add(newProduct);
+    
         nm.Text = string.Empty;
         pr.Text = string.Empty;
         ct.Text = string.Empty;
         this.Close();
     }
-}
+}   
