@@ -5,15 +5,20 @@
         mc:Ignorable="d"
         x:Class="Bindings.Views.AddProducts"
         Title="Добавление продукта"
-        Width="400" Height="200">
+        Width="400" Height="300">
 
     <StackPanel HorizontalAlignment="Center" Spacing="5">
         <TextBlock Text="Продукты:" />
         <TextBox Watermark="Название:" Name="nm" />
         <TextBox Watermark="Цена:" Name="pr" />
         <TextBox Watermark="Количество:" Name="ct" />
+        
+        <Button Width="200" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Content="Добавить фотокарточку"
+                Click="AddImageButton_Click" Background="Blue" />
+        
         <Button Width="120" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Content="Создать товар"
                 Click="AddButton_Click" Background="Green" />
+        
         <TextBlock Name="Error" Foreground="Red" />
     </StackPanel>
 </Window>

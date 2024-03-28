@@ -87,6 +87,8 @@ namespace Bindings.Views
             var product = (Product)button.DataContext;
 
             product.Count++;
+            
+            Update();
         }
 
         private void DecreaseCountButton_Click(object sender, RoutedEventArgs e)
@@ -98,6 +100,7 @@ namespace Bindings.Views
             {
                 product.Count--;
             }
+            Update();
         }
 
     }

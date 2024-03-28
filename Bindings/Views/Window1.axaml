@@ -7,27 +7,40 @@
         mc:Ignorable="d"
         x:Class="Bindings.Views.Window1"
         Title="Корзина"
-        Width="600" Height="400">
+        Width="800" Height="600"
+        WindowState="Maximized">
+
     <StackPanel HorizontalAlignment="Center">
+
         <ListBox Name="Cart" ItemsSource="{Binding Cart}" SelectionMode="Multiple">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="{Binding Name}" />
-                            <TextBlock Text="{Binding Price}" />
-                            <TextBox HorizontalAlignment="Center" IsEnabled="False" Text="{Binding Count}" KeyUp="TextBox_KeyUp" />
-                            <Grid>
-                            <Button Foreground="Blue" Content="+" Click="IncreaseCountButton_Click" />
-                            <Button Foreground="Blue" Margin="27 0 0 0 " Content="-" Click="DecreaseCountButton_Click" />
-                            </Grid>
+                    <Border BorderThickness="1" BorderBrush="Gray" Margin="5" Padding="5">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding ImagePath}" Width="75" Height="75" Margin="0 0 10 0"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name, StringFormat='Название - {0}'}" FontSize="16" FontWeight="Bold" Margin="0 0 0 5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" Margin="0 0 10 0"/>
+                                    <TextBlock Text="{Binding Count, StringFormat='Количество: {0}'}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="10 0 0 0">
+                                <Button Content="+" Click="IncreaseCountButton_Click" Margin="0 0 5 0" Width="30" Height="30"/>
+                                <Button Content="-" Click="DecreaseCountButton_Click" Width="30" Height="30"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock Name="summa" />
-        <Button Content="Удалить" Click="DeleteButton_OnClick" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Button Name="BackButton" Content="Вернуться к покупкам" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+        <TextBlock Name="summa" Margin="5"/>
+
+        <StackPanel Orientation="Horizontal" Margin="5">
+            <Button Content="Удалить" Click="DeleteButton_OnClick" Margin="0 0 20 0" Width="100" Height="30"/>
+            <Button Name="BackButton" Content="Вернуться к покупкам" Width="200" Height="30"/>
+        </StackPanel>
+
     </StackPanel>
 </Window>
