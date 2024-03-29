@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
@@ -70,7 +69,6 @@ namespace Bindings.Views
             }
         }
 
-
         private async void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
@@ -91,7 +89,6 @@ namespace Bindings.Views
                     }
                 }
 
-                Prod.ItemsSource = null;
                 Prod.ItemsSource = viewModel.Products;
             }
             else
@@ -101,7 +98,6 @@ namespace Bindings.Views
                 Error.Text = string.Empty;
             }
         }
-
 
         private async void EditButton_OnClick(object sender, RoutedEventArgs e)
         {
