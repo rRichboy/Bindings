@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
 using Bindings.Models;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Bindings.ViewModels;
@@ -45,19 +43,53 @@ namespace Bindings.Views
             }
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private async void AddButton_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(nm.Text) || string.IsNullOrWhiteSpace(pr.Text) || string.IsNullOrWhiteSpace(ct.Text))
+            {
+                Error.Text = "Заполните все поля!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+                return;
+            }
+
+            if (_imagePath == null)
+            {
+                Error.Text = "Для добавления товара выберите фотокарточку!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+                return;
+            }
+
+            if (!int.TryParse(pr.Text, out int price))
+            {
+                Error.Text = "Введите корректную цену!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+                return;
+            }
+            
+            if (!int.TryParse(ct.Text, out int count))
+            {
+                Error.Text = "Введите корректное количество!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+                return;
+            }
+
             var newProduct = new Product
             {
                 Name = nm.Text,
-                Price = int.Parse(pr.Text),
-                Count = int.Parse(ct.Text),
+                Price = price,
+                Count = count,
                 ImagePath = _imagePath
             };
 
             if (viewModel.Products.Any(p => p.Name == newProduct.Name))
             {
                 Error.Text = $"Товар с именем '{newProduct.Name}' уже существует.";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
                 return;
             }
 

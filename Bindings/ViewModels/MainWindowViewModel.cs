@@ -22,8 +22,9 @@ public class MainWindowViewModel : ViewModelBase
     
     public ObservableCollection<Product> SearchTextBox(string searchText)
     {
-        var filteredProducts = new ObservableCollection<Product>(Products
-            .Where(product => product.Name.Contains(searchText)));
+        var filteredProducts = new ObservableCollection<Product>(
+            Products.Where(product => product.Name.Contains(searchText)));
+
         return filteredProducts;
     }
 }

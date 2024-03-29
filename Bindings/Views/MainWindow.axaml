@@ -43,49 +43,62 @@
             <Setter Property="FontSize" Value="16" />
         </Style>
         
+        <Style Selector="Button.filtr">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Style Selector="^:pointerover /template/ ContentPresenter">
+                <Setter Property="Background" Value="Transparent"/>
+            </Style>
+            <Style Selector="^:focus /template/ ContentPresenter">
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+        </Style>
+        
         <Style Selector="StackPanel">
             <Setter Property="Margin" Value="10" />
             <Setter Property="Orientation" Value="Vertical" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
-
+        
     </Window.Styles>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="150" Name="Search" Watermark="Поиск товара" KeyUp="SearchTextBox_OnKeyUp"/>
-            <TextBlock Text="Сортировка:"  Margin="0 10 0 0 "/>
-            <ComboBox Name="comboBox" Width="150" Margin=" 0 1 0 0" SelectionChanged="SortComboBox_SelectionChanged">
-                <ComboBoxItem Content="Дешевле"/>
-                <ComboBoxItem Content="Дороже"/>
-                <ComboBoxItem Content="От А до Я"/>
-                <ComboBoxItem Content="От Я до A"/>
-            </ComboBox>
+        <StackPanel>
+            <TextBox HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Width="800" Name="Search" Margin="0 0 0 0" Watermark="Поиск товара" KeyUp="SearchTextBox_OnKeyUp"/>        
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 -5 0 0" Spacing="10">
+            <Button Classes="filtr" Content="По цене" Click="PriceButton_Click"/>
+            <TextBlock Name="PriceArrow" Text="" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Button Classes="filtr" Content="По алфавиту" Click="AlfavitButton_Click"/>
+            <TextBlock Name="AlfavitArrow" Text="" VerticalAlignment="Center" HorizontalAlignment="Right"/>
         </StackPanel>
         
-        <ListBox Grid.Column="1" Name="Prod" ItemsSource="{Binding Products}"
+        <ListBox Grid.Row="2" Name="Prod" ItemsSource="{Binding Products}"
                  SelectionMode="Multiple" SelectedItems="{Binding SelectedProducts}" Background="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
-                        <StackPanel Margin="10 0" >
-                            <Image Source="{Binding ImagePath, StringFormat='Фото - {0}'}" Width="100" Height="100"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="5" Width="200">
+                        <StackPanel>
+                            <Image Source="{Binding ImagePath}" Width="100" Height="100"/>
                             <TextBlock Text="{Binding Name, StringFormat='Название - {0}'}" />
                             <TextBlock Text="{Binding Price, StringFormat='Цена - {0:C}'}" Foreground="Green"/>
                             <TextBlock Text="{Binding Count, StringFormat='Количество - {0}'}" Foreground="Blue"/>
                         </StackPanel>
-                    </StackPanel>
+                    </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <StackPanel Grid.Column="2">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5">
             <Button Content="Создать товар" Click="Button_OnClick"/>
             <Button Content="Добавить в корзину" Click="OpenButton_Click"/>
             <Button Content="Изменить" Click="EditButton_OnClick"/>
@@ -93,6 +106,6 @@
             <Button Content="Открыть корзину" Click="OpenCartButton_Click"/>
         </StackPanel>
 
-        <TextBlock Grid.Column="1" Name="Error" Foreground="Red" />
+        <TextBlock Grid.Row="1" Name="Error" Foreground="Red" />
     </Grid>
 </Window>

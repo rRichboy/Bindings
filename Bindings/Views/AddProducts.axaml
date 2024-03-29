@@ -5,7 +5,7 @@
         mc:Ignorable="d"
         x:Class="Bindings.Views.AddProducts"
         Title="Добавление продукта"
-        Width="400" Height="300">
+        Width="350" Height="250">
 
     <StackPanel HorizontalAlignment="Center" Spacing="5">
         <TextBlock Text="Продукты:" />

@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -13,13 +14,16 @@ namespace Bindings.Views
     {
         private Bitmap _imagePath;
         private ComboBox сomboBox;
+        private bool isAscending = true;
+        private int clickCountPrice = 0;
+        private int clickCountAlphabet = 0;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
         }
 
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        private async void OpenButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
 
@@ -44,6 +48,8 @@ namespace Bindings.Views
                     else
                     {
                         Error.Text = $"Продукт '{product.Name}' уже присутствует в корзине.";
+                        await Task.Delay(3000);
+                        Error.Text = string.Empty;
                     }
                 }
 
@@ -58,8 +64,11 @@ namespace Bindings.Views
             else
             {
                 Error.Text = "Выберите продукты перед открытием корзины.";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
             }
         }
+
         
         private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -80,8 +89,11 @@ namespace Bindings.Views
                         }
                     }
                 }
+                Prod.ItemsSource = null;
+                Prod.ItemsSource = viewModel.Products;
             }
         }
+
         
         private void EditButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -124,31 +136,54 @@ namespace Bindings.Views
             var viewModel = DataContext as MainWindowViewModel; 
             if (viewModel != null)
             {
-                viewModel.SearchTextBox(Search.Text);
+                var filteredProducts = viewModel.SearchTextBox(Search.Text);
+
+                Prod.ItemsSource = filteredProducts;
             }
         }
         
-        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PriceButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            if (comboBox.SelectedItem != null)
-            {
-                string sortBy = (comboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+            var productsViewModel = (MainWindowViewModel)this.DataContext;
+            
+            clickCountPrice++;
 
-                switch (sortBy)
-                {
-                    case "Дешевле":
-                        Prod.ItemsSource = ((MainWindowViewModel)this.DataContext).Products.OrderBy(p => p.Price);
-                        break;
-                    case "Дороже":
-                        Prod.ItemsSource = ((MainWindowViewModel)this.DataContext).Products.OrderByDescending(p => p.Price);
-                        break;
-                    case "От А до Я":
-                        Prod.ItemsSource = ((MainWindowViewModel)this.DataContext).Products.OrderBy(p => p.Name);
-                        break;
-                    case "От Я до А":
-                        Prod.ItemsSource = ((MainWindowViewModel)this.DataContext).Products.OrderByDescending(p => p.Name);
-                        break;        
-                }
+            switch (clickCountPrice % 3)
+            {
+                case 0: 
+                    Prod.ItemsSource = productsViewModel.Products; 
+                    PriceArrow.Text = "";
+                    break;
+                case 1: 
+                    Prod.ItemsSource = productsViewModel.Products.OrderBy(p => p.Price); 
+                    PriceArrow.Text = "▲"; 
+                    break;
+                case 2: 
+                    Prod.ItemsSource = productsViewModel.Products.OrderByDescending(p => p.Price);
+                    PriceArrow.Text = "▼"; 
+                    break;
+            }
+        }
+        private void AlfavitButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var productsViewModel = (MainWindowViewModel)this.DataContext;
+
+            clickCountAlphabet++;
+
+            switch (clickCountAlphabet % 3)
+            {
+                case 0:
+                    Prod.ItemsSource = productsViewModel.Products;
+                    AlfavitArrow.Text = "";
+                    break;
+                case 1: 
+                    Prod.ItemsSource = productsViewModel.Products.OrderBy(p => p.Name);
+                    AlfavitArrow.Text = "▲";
+                    break;
+                case 2: 
+                    Prod.ItemsSource = productsViewModel.Products.OrderByDescending(p => p.Name);
+                    AlfavitArrow.Text = "▼";
+                    break;
             }
         }
     }
