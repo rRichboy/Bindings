@@ -17,6 +17,7 @@ namespace Bindings.Views
         private bool isAscending = true;
         private int clickCountPrice = 0;
         private int clickCountAlphabet = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace Bindings.Views
                             Name = product.Name,
                             Price = product.Price,
                             Count = 1,
-                            ImagePath = product.ImagePath 
+                            ImagePath = product.ImagePath
                         };
 
                         viewModel.Cart.Add(cartProduct);
@@ -69,8 +70,8 @@ namespace Bindings.Views
             }
         }
 
-        
-        private void DeleteButton_OnClick(object sender, RoutedEventArgs e)
+
+        private async void DeleteButton_OnClick(object sender, RoutedEventArgs e)
         {
             var selectedItems = Prod.SelectedItems.OfType<Product>().ToList();
 
@@ -89,13 +90,20 @@ namespace Bindings.Views
                         }
                     }
                 }
+
                 Prod.ItemsSource = null;
                 Prod.ItemsSource = viewModel.Products;
             }
+            else
+            {
+                Error.Text = "Выберите, что хотите удалить!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+            }
         }
 
-        
-        private void EditButton_OnClick(object sender, RoutedEventArgs e)
+
+        private async void EditButton_OnClick(object sender, RoutedEventArgs e)
         {
             Product selectedProduct = (Product)Prod.SelectedItem;
 
@@ -105,6 +113,12 @@ namespace Bindings.Views
                 dialog.SetProductFields(selectedProduct);
                 dialog.ShowDialog(this);
             }
+            else
+            {
+                Error.Text = "Выберите, что хотите изменить!";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+            }
         }
 
         private void Button_OnClick(object sender, RoutedEventArgs e)
@@ -112,8 +126,8 @@ namespace Bindings.Views
             var dialog = new AddProducts((MainWindowViewModel)DataContext);
             dialog.ShowDialog(this);
         }
-        
-        private void OpenCartButton_Click(object sender, RoutedEventArgs e)
+
+        private async void OpenCartButton_Click(object sender, RoutedEventArgs e)
         {
             var viewModel = DataContext as MainWindowViewModel;
 
@@ -129,11 +143,17 @@ namespace Bindings.Views
 
                 window1.Show();
             }
+            else
+            {
+                Error.Text = "Корзина пуста :(";
+                await Task.Delay(3000);
+                Error.Text = string.Empty;
+            }
         }
-        
+
         private void SearchTextBox_OnKeyUp(object sender, KeyEventArgs e)
         {
-            var viewModel = DataContext as MainWindowViewModel; 
+            var viewModel = DataContext as MainWindowViewModel;
             if (viewModel != null)
             {
                 var filteredProducts = viewModel.SearchTextBox(Search.Text);
@@ -141,29 +161,30 @@ namespace Bindings.Views
                 Prod.ItemsSource = filteredProducts;
             }
         }
-        
+
         private void PriceButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var productsViewModel = (MainWindowViewModel)this.DataContext;
-            
+
             clickCountPrice++;
 
             switch (clickCountPrice % 3)
             {
-                case 0: 
-                    Prod.ItemsSource = productsViewModel.Products; 
+                case 0:
+                    Prod.ItemsSource = productsViewModel.Products;
                     PriceArrow.Text = "";
                     break;
-                case 1: 
-                    Prod.ItemsSource = productsViewModel.Products.OrderBy(p => p.Price); 
-                    PriceArrow.Text = "▲"; 
+                case 1:
+                    Prod.ItemsSource = productsViewModel.Products.OrderBy(p => p.Price);
+                    PriceArrow.Text = "▲";
                     break;
-                case 2: 
+                case 2:
                     Prod.ItemsSource = productsViewModel.Products.OrderByDescending(p => p.Price);
-                    PriceArrow.Text = "▼"; 
+                    PriceArrow.Text = "▼";
                     break;
             }
         }
+
         private void AlfavitButton_Click(object sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
             var productsViewModel = (MainWindowViewModel)this.DataContext;
@@ -176,11 +197,11 @@ namespace Bindings.Views
                     Prod.ItemsSource = productsViewModel.Products;
                     AlfavitArrow.Text = "";
                     break;
-                case 1: 
+                case 1:
                     Prod.ItemsSource = productsViewModel.Products.OrderBy(p => p.Name);
                     AlfavitArrow.Text = "▲";
                     break;
-                case 2: 
+                case 2:
                     Prod.ItemsSource = productsViewModel.Products.OrderByDescending(p => p.Name);
                     AlfavitArrow.Text = "▼";
                     break;
