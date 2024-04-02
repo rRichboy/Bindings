@@ -42,7 +42,8 @@ namespace Bindings.Views
             if (viewModel != null)
             {
                 var totalPrice = viewModel.Cart.Sum(product => product.Price * product.Count);
-                summa.Text = $"Общая сумма: {totalPrice}";
+                summa.Text = $"Общая сумма: {totalPrice} ₽";
+
             }
         }
 

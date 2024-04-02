@@ -9,6 +9,17 @@
         Title="Корзина"
         Width="800" Height="600"
         WindowState="Maximized">
+    
+    <Window.Styles>
+            <Style Selector="Button.niz">
+                <Setter Property="Width" Value="180" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="Background" Value="Blue" />
+                <Setter Property="Margin" Value="0 10" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            </Style>
+    </Window.Styles>
 
     <StackPanel HorizontalAlignment="Center">
 
@@ -26,8 +37,8 @@
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Margin="10 0 0 0">
-                                <Button Content="+" Click="IncreaseCountButton_Click" Margin="0 0 5 0" Width="30" Height="30"/>
-                                <Button Content="-" Click="DecreaseCountButton_Click" Width="30" Height="30"/>
+                                <Button Content="+" HorizontalContentAlignment="Center" Click="IncreaseCountButton_Click" Margin="0 0 5 0" Width="30" Height="30"/>
+                                <Button Content="-" HorizontalContentAlignment="Center" Click="DecreaseCountButton_Click" Width="30" Height="30"/>
                             </StackPanel>
                         </StackPanel>
                     </Border>
@@ -35,11 +46,11 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <TextBlock Name="summa" Margin="5"/>
+        <TextBlock HorizontalAlignment="Center" Name="summa" Margin="5"/>
 
         <StackPanel Orientation="Horizontal" Margin="5">
-            <Button Content="Удалить" Click="DeleteButton_OnClick" Margin="0 0 20 0" Width="100" Height="30"/>
-            <Button Name="BackButton" Content="Вернуться к покупкам" Width="200" Height="30"/>
+            <Button Classes="niz" Content="Удалить" Click="DeleteButton_OnClick" Margin="0 0 20 0" Width="100" Height="30"/>
+            <Button Classes="niz" Name="BackButton" Content="Вернуться к покупкам" Width="200" Height="30"/>
         </StackPanel>
 
     </StackPanel>
